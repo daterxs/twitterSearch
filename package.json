@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "twit": "bin/twit"
+  },
   "author": "“Xavier <nuxion@gmail.com>",
   "license": "MPL-2.0",
   "dependencies": {

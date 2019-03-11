@@ -4,7 +4,7 @@ const program = require('commander');
 
 program
   .version('0.2.0')
-	.command('search', 'Commands related to mongodb')
+  .command('search', 'Commands related to search api')
   .command('utils', 'Differents utilities')
   .command('test', 'Testing')
   .parse(process.argv);
