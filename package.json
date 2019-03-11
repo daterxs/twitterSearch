@@ -2,13 +2,14 @@
   "name": "twitterSearch",
   "version": "0.1.0",
   "description": "Twitter Search",
-  "main": "index.js",
+  "main": "lib/application.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "“Xavier <nuxion@gmail.com>",
   "license": "MPL-2.0",
   "dependencies": {
+    "commander": "^2.19.0",
     "convict": "^4.4.1",
     "dotenv": "^6.2.0",
     "mongoose": "^5.4.18",
