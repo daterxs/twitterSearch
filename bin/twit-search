@@ -10,7 +10,7 @@ program
   .option('-s --since [since]', 'From wich date look. Format YYYY-MM-DD')
   .option('-u --until [until]', 'Until wich date look. Format YYYY-MM-DD')
   .option('-i --id-max [maxId]', 'Start from this id')
-  .option('-o --output [file]', 'Output on json format')
+  .option('-o --output [filepath]', 'Dir where store store_#.json files')
   .option('-m --mongodb [mongourl]', 'Save tweets on mongodb')
   .parse(process.argv);
 
@@ -23,39 +23,18 @@ if (program.since) params.since = program.since;
 if (program.until) params.until = program.until;
 
 console.log(params);
+const app = new Twit(config);
 
-/* if (program.mongodb) {
+
+if (program.mongodb) {
   config.set('store.mongodb.url', program.mongodb);
   store = new StoreService(config);
-} else {
-  if (program.output){
-    config.set('store.fs.path', program.output);
-
-  }
+  app.setStore(store.saveDB);
+} else if (program.output) {
+  config.set('store.fs.path', program.output);
 }
 
-if (!program.tweets) {
-  count = 200;
-} else {
-  count = parseInt(program.tweets, 10);
+if (params) {
+  app.registerEventListener('searchTwits', () => console.log('Tweets searched'));
+  app.search(params);
 }
-
-const mongodb = conf.get('mongodb');
-mongodb.collection = colName;
-
-
-mongoose.connect(`${conf.get('mongodb.url')}`, conf.get('mongodb.options'))
-  .then(() => console.log('Now connected to MongoDB!'))
-  .then(() => mongo.createIndex(mongodb))
-  .then(() => {
-    const app = new App();
-    const T = new Twit(conf.get('twitter'));
-    app.setTimeline(T, colName);
-    app.run(screen_name, count).then(
-      () => { console.log('Finish...'); },
-    ).then(() => process.exit());
-  })
-  .catch((err) => {
-    console.error('Something went wrong', err);
-    process.exit(1);
-  }); */
