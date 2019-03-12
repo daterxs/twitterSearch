@@ -63,16 +63,16 @@ En *endpoints.js* estan las rutas a las api de twitter.
 En *model.js* Todo lo relacion a cómo mongodb guarda los twits.
 
 ## Pendientes/backlog ##
-[x] agregar cli
-[x] docker image
-[] documentar el acceso y uso de la base
-[] refactorizar storeService
-[] agregar el endpoint de prometheus
-[] tooling para export y salvar los archivos.
-[] mejoras para la api del cli en search?
-[] subir paquete a NPM
-[] documentar todos los eventListeners
-[] integracion con docker-compose para que pueda quedar ejecutando.
+- [x] agregar cli
+- [x] docker image
+- [] documentar el acceso y uso de la base
+- [] refactorizar storeService
+- [] agregar el endpoint de prometheus
+- [] tooling para export y salvar los archivos.
+- [] mejoras para la api del cli en search?
+- [] subir paquete a NPM
+- [] documentar todos los eventListeners
+- [] integracion con docker-compose para que pueda quedar ejecutando.
 
 ## Changelog ##
 
