@@ -2,6 +2,7 @@
 const program = require('commander');
 const Twit = require('../');
 const StoreService = require('../lib/storeService');
+const geocodes = require('../lib/geocodes');
 const config = require('../lib/config');
 
 program
@@ -9,6 +10,8 @@ program
   .option('-g --geocode [geocode]', 'Coordinates to sarch by location')
   .option('-s --since [since]', 'From wich date look. Format YYYY-MM-DD')
   .option('-u --until [until]', 'Until wich date look. Format YYYY-MM-DD')
+  .option('-t --type [type]', 'result_type: mixed, recent, popular')
+  .option('-l --lang [lang]', 'lang: es, en, fr, pr, etc')
   .option('-i --id-max [maxId]', 'Start from this id')
   .option('-o --output [filepath]', 'Dir where store store_#.json files')
   .option('-m --mongodb [mongourl]', 'Save tweets on mongodb')
@@ -18,8 +21,10 @@ const params = {};
 let store;
 
 if (program.words) params.q = program.words;
-if (program.geocode) params.geocode = program.geocode;
+if (program.geocode) params.geocode = geocodes.get(program.geocode);
 if (program.since) params.since = program.since;
+if (program.lang) params.lang = program.lang;
+if (program.type) params.result_type = program.type;
 if (program.until) params.until = program.until;
 
 console.log(params);
@@ -35,6 +40,6 @@ if (program.mongodb) {
 }
 
 if (params) {
-  app.registerEventListener('searchTwits', () => console.log('Tweets searched'));
+  app.registerEventListener('searchTwits', data => console.log(`${data[0].text}`));
   app.search(params);
 }
